@@ -7,11 +7,23 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Hintergrundvideo -->
+  <video id="bg-video-1" class="bg-video" autoplay muted playsinline></video>
+  <video id="bg-video-2" class="bg-video hidden" autoplay muted loop playsinline></video>
+
+  <!-- Vignette -->
+  <div class="vignette"></div>
+
   <header class="hero">
-    <img src="logo.png" alt="Controversum Logo" class="logo" />
-    <h1>Controversum</h1>
-    <p>Analysen, die tiefer gehen.</p>
-    <a href="#video" class="cta-button">Neues Video ansehen</a>
+    <h1 class="glitch-text">
+      <span class="contro">Contro</span><span class="versum">versum</span>
+    </h1>
+
+    <!-- Dynamischer Kreis -->
+    <div class="circle"></div>
+
+    <p class="typewriter">YouTube-Videos, die tiefer gehen.</p>
+    <a href="#video" class="cta-button hidden">Neues Video ansehen</a>
   </header>
 
   <main class="content">
@@ -31,5 +43,55 @@
   <footer>
     <p>© 2025 Controversum. Alle Rechte vorbehalten.</p>
   </footer>
+
+  <!-- Inline JavaScript -->
+  <script>
+    const video1 = document.getElementById("bg-video-1");
+    const video2 = document.getElementById("bg-video-2");
+    const cta = document.querySelector(".cta-button");
+    const circle = document.querySelector(".circle");
+    const typewriterText = document.querySelector(".typewriter");
+    const glitchText = document.querySelector(".glitch-text");
+    
+    // Setze Videopfade
+    video1.src = "intro.mp4";      // erstes, einmaliges Hintergrundvideo
+    video2.src = "loop.mp4";       // danach dauerhafte Schleife
+
+    // Intro-Video-Ende: Wechsel zu Loop-Video
+    video1.addEventListener("ended", () => {
+      video1.classList.add("hidden");
+      video2.classList.remove("hidden");
+      video2.play();
+    });
+
+    // 1,5s nach Start - Glitch-Effekt für Controversum
+    setTimeout(() => {
+      glitchText.classList.add("show-glitch");
+    }, 1500);
+
+    // 1,8s nach Start - Kreis erscheint
+    setTimeout(() => {
+      circle.classList.add("show-circle");
+    }, 1800);
+
+    // 2,5s nach Start - Typo-Effekt für "YouTube-Videos, die tiefer gehen."
+    setTimeout(() => {
+      typewriterText.classList.add("show-typed");
+    }, 2500);
+
+    // 3s nach Start - Fade-In der CTA-Schaltflächen, Video und Copyright
+    setTimeout(() => {
+      cta.classList.remove("hidden");
+    }, 3000);
+    setTimeout(() => {
+      document.querySelector("#video iframe").classList.remove("hidden");
+    }, 3000);
+    setTimeout(() => {
+      document.querySelector(".channel-button").classList.remove("hidden");
+    }, 3000);
+    setTimeout(() => {
+      document.querySelector("footer p").classList.remove("hidden");
+    }, 3000);
+  </script>
 </body>
 </html>
