@@ -7,7 +7,7 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #0b1d0e; /* sehr dunkles Grün */
+  background-color: #0b1d0e;
   color: #fff;
   line-height: 1.6;
   display: flex;
@@ -16,20 +16,77 @@ body {
 }
 
 .hero {
+  position: relative;
   text-align: center;
   padding: 4rem 1rem;
-  background-color: #0b1d0e; /* ebenfalls dunkles Grün für den Header */
 }
 
-.hero h1 {
+.glitch-text {
   font-size: 3rem;
   font-weight: 600;
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
 }
 
-.hero p {
+.glitch-text.show-glitch {
+  opacity: 1;
+  animation: glitch 1s ease-in-out infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 2px 0 red, -2px -2px 0 blue; }
+  25% { text-shadow: -2px 2px 0 red, 2px -2px 0 blue; }
+  50% { text-shadow: 2px -2px 0 red, -2px 2px 0 blue; }
+  75% { text-shadow: -2px -2px 0 red, 2px 2px 0 blue; }
+  100% { text-shadow: 2px 2px 0 red, -2px -2px 0 blue; }
+}
+
+.contro {
+  color: #fff;
+}
+
+.versum {
+  color: #fff;
+}
+
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border: 2px solid white;
+  border-radius: 50%;
+  transition: width 1s ease, height 1s ease, top 1s ease;
+  opacity: 0;
+}
+
+.circle.show-circle {
+  width: 50%; /* von "Contro" bis "versum" */
+  height: 50%;
+  top: 50%;
+  opacity: 1;
+}
+
+.typewriter {
   font-size: 1.25rem;
   margin-top: 1rem;
   color: #ccc;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 4px solid #fff;
+  width: 0;
+  animation: typing 4s steps(30) 1s forwards;
+}
+
+@keyframes typing {
+  to {
+    width: 100%;
+  }
 }
 
 .cta-button {
@@ -42,6 +99,12 @@ body {
   text-decoration: none;
   border-radius: 9999px;
   transition: background-color 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cta-button.hidden {
+  opacity: 0;
 }
 
 .cta-button:hover {
@@ -74,6 +137,11 @@ body {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
+}
+
+.video-wrapper iframe.hidden {
+  opacity: 0;
 }
 
 .channel-button {
@@ -85,6 +153,12 @@ body {
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.channel-button.hidden {
+  opacity: 0;
 }
 
 .channel-button:hover {
@@ -97,10 +171,21 @@ footer {
   padding: 2rem 1rem;
   font-size: 0.875rem;
   color: #aaa;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.logo {
-  width: 120px;
-  height: auto;
-  margin-bottom: 1rem;
+footer p.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0,0,0,0.7) 10%, transparent 80%);
+  z-index: 2;
 }
