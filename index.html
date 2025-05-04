@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Controversum</title>
+  <title>Controversum</title> <!-- Titel geändert -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -14,16 +14,16 @@
   <!-- Vignette -->
   <div class="vignette"></div>
 
-  <header class="hero hidden">
+  <header class="hero">
     <img src="logo.png" alt="Controversum Logo" class="logo" />
     <h1 class="glitch-text">
       <span class="contro">Contro</span><span class="versum">versum</span>
     </h1>
-    <p class="typewriter">YouTube-Videos, die tiefer gehen.</p>
+    <p class="typewriter">YouTube-Videos, die tiefer gehen.</p> <!-- Der Text bleibt gleich -->
     <a href="#video" class="cta-button hidden">Neues Video ansehen</a>
   </header>
 
-  <main class="content hidden">
+  <main class="content">
     <section id="video" class="video-section">
       <div class="video-wrapper">
         <iframe 
@@ -38,7 +38,7 @@
   </main>
 
   <footer>
-    <p>© 2025 Cedric Janssen. Made with 🤍</p>
+    <p>© 2025 Controversum. Alle Rechte vorbehalten.</p>
   </footer>
 
   <!-- Inline JavaScript -->
@@ -46,8 +46,6 @@
     const video1 = document.getElementById("bg-video-1");
     const video2 = document.getElementById("bg-video-2");
     const cta = document.querySelector(".cta-button");
-    const hero = document.querySelector(".hero");
-    const content = document.querySelector(".content");
 
     // Setze Videopfade
     video1.src = "intro.mp4";      // erstes, einmaliges Hintergrundvideo
@@ -60,13 +58,7 @@
       video2.play();
     });
 
-    // Zeige Inhalt mit Verzögerung
-    setTimeout(() => {
-      hero.classList.remove("hidden");
-      content.classList.remove("hidden");
-    }, 1300); // ca. 1.3s nach Seitenstart
-
-    // Zeige CTA-Button nach kurzer Verzögerung
+    // Zeige CTA-Button nach kurzer Verzögerung (entsprechend Typewriter-Ende)
     setTimeout(() => {
       cta.classList.remove("hidden");
     }, 3700); // ca. 3.7s nach Seitenstart
