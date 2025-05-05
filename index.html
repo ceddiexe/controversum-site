@@ -1,86 +1,176 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Controversum</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Overlay Beispiel</title>
+    <style>
+        /* Basis-Stile */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css" />
+        .hidden {
+            display: none !important;
+        }
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        .about-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: 1px solid #fff;
+            border-radius: 9999px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: transparent;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 3.5s;
+        }
 
-  <!-- Open Graph Meta Tags (für Notion, Social Media etc.) -->
-  <meta property="og:title" content="Controversum – YouTube-Videos, die tiefer gehen." />
-  <meta property="og:description" content="Politische Analyse. Visuell erzählt." />
-  <meta property="og:image" content="https://controversum.cc/thumbnail.jpg" />
-  <meta property="og:url" content="https://controversum.cc/" />
-  <meta property="og:type" content="website" />
+        .about-button:hover {
+            background-color: #fff;
+            color: #000;
+        }
 
-  <!-- Twitter Card (optional) -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Controversum – YouTube-Videos, die tiefer gehen." />
-  <meta name="twitter:description" content="Politische Analyse. Visuell erzählt." />
-  <meta name="twitter:image" content="https://controversum.cc/thumbnail.jpg" />
+        .about-overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 80%;
+            max-width: 600px;
+            height: auto;
+            background-color: #fff;
+            color: #000;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 1rem;
+            padding: 2rem;
+            z-index: 1000;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            transition: transform 0.5s ease;
+        }
+
+        .about-overlay.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .blur-background {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            z-index: 900;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: #777;
+        }
+
+        .secondary-typewriter {
+            font-size: 1.25rem;
+            color: #ccc;
+            overflow: hidden;
+            border-right: .15em solid #ccc;
+            white-space: nowrap;
+            width: 0;
+            animation: typing2 3s steps(30, end) forwards, blink2 0.7s steps(30, end) 3s forwards;
+            animation-delay: 0.7s;
+            margin: 2rem auto 1rem auto;
+        }
+
+        @keyframes typing2 {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink2 {
+            0% { border-right-color: #ccc; }
+            99% { border-right-color: transparent; }
+            100% { border-right-color: transparent; }
+        }
+
+        .youtube-container {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-  <!-- Hintergrundvideo -->
-  <video id="bg-video-1" class="bg-video" autoplay muted playsinline></video>
-  <video id="bg-video-2" class="bg-video hidden" autoplay muted loop playsinline></video>
 
-  <!-- Vignette -->
-  <div class="vignette"></div>
+    <!-- About Button -->
+    <a id="about-button" class="about-button hidden">About</a>
 
-  <header class="hero">
-    <img src="logo.png" alt="Controversum Logo" class="logo" />
-    <h1 class="glitch-text">
-      <span class="contro">Contro</span><span class="versum">versum</span>
-    </h1>
-    <p class="typewriter">YouTube-Videos, die tiefer gehen.</p> <!-- Der Text bleibt gleich -->
-    <a href="#video" class="cta-button hidden">Neues Video ansehen</a>
-  </header>
+    <!-- About Overlay -->
+    <div id="about-overlay" class="about-overlay hidden">
+        <div class="about-content">
+            <button id="close-about" class="close-button">&times;</button>
+            <p>Hello :) Mein Name ist Cedric und ich studiere Politikwissenschaft und Digitale Medien. Auf diesem Kanal setze ich mich kritisch mit verschiedenen politischen und gesellschaftlichen Themen auseinander. Ich freue mich, wenn dir meine Videos gefallen!</p>
+        </div>
+    </div>
+    
+    <div id="blur-background" class="blur-background hidden"></div>
 
-  <main class="content">
-    <section id="video" class="video-section">
-      <div class="video-wrapper">
-        <iframe 
-          src="https://www.youtube.com/embed/aerDcrTKFf4" 
-          title="Neuestes Video" 
-          frameborder="0" 
-          allowfullscreen
-        ></iframe>
-      </div>
-      <a class="channel-button" href="https://www.youtube.com/@Controversum." target="_blank">Zum YouTube-Kanal</a>
-    </section>
-  </main>
+    <!-- Typing Text -->
+    <p class="typewriter secondary-typewriter">Zum neuesten Video:</p>
 
-  <footer>
-    <p>© 2025 Cedric Janssen. Made with 🤍</p>
-  </footer>
+    <!-- YouTube Video Embed -->
+    <div class="youtube-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
 
-  <!-- Inline JavaScript -->
-  <script>
-    const video1 = document.getElementById("bg-video-1");
-    const video2 = document.getElementById("bg-video-2");
-    const cta = document.querySelector(".cta-button");
+    <script>
+        // JS-Funktionalität für About-Button und Overlay
+        const aboutBtn = document.getElementById("about-button");
+        const aboutOverlay = document.getElementById("about-overlay");
+        const closeAbout = document.getElementById("close-about");
+        const blurBg = document.getElementById("blur-background");
 
-    // Setze Videopfade
-    video1.src = "intro.mp4";      // erstes, einmaliges Hintergrundvideo
-    video2.src = "loop.mp4";       // danach dauerhafte Schleife
+        aboutBtn.addEventListener("click", () => {
+            aboutOverlay.classList.remove("hidden");
+            blurBg.classList.remove("hidden");
+            setTimeout(() => {
+                aboutOverlay.classList.add("show");
+            }, 10);
+        });
 
-    // Wenn das erste Video endet, blende es aus und starte das Loop-Video
-    video1.addEventListener("ended", () => {
-      video1.classList.add("hidden");
-      video2.classList.remove("hidden");
-      video2.play();
-    });
+        closeAbout.addEventListener("click", () => {
+            aboutOverlay.classList.remove("show");
+            setTimeout(() => {
+                aboutOverlay.classList.add("hidden");
+                blurBg.classList.add("hidden");
+            }, 500);
+        });
+    </script>
 
-    // Zeige CTA-Button nach kurzer Verzögerung (entsprechend Typewriter-Ende)
-    setTimeout(() => {
-      cta.classList.remove("hidden");
-    }, 3700); // ca. 3.7s nach Seitenstart
-  </script>
 </body>
 </html>
