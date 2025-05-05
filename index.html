@@ -1,57 +1,86 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Overlay Beispiel</title>
-    <link rel="stylesheet" href="style.css"> <!-- Verknüpfe die externe CSS-Datei -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controversum</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Open Graph Meta Tags (für Notion, Social Media etc.) -->
+  <meta property="og:title" content="Controversum – YouTube-Videos, die tiefer gehen." />
+  <meta property="og:description" content="Politische Analyse. Visuell erzählt." />
+  <meta property="og:image" content="https://controversum.cc/thumbnail.jpg" />
+  <meta property="og:url" content="https://controversum.cc/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card (optional) -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Controversum – YouTube-Videos, die tiefer gehen." />
+  <meta name="twitter:description" content="Politische Analyse. Visuell erzählt." />
+  <meta name="twitter:image" content="https://controversum.cc/thumbnail.jpg" />
 </head>
 <body>
+  <!-- Hintergrundvideo -->
+  <video id="bg-video-1" class="bg-video" autoplay muted playsinline></video>
+  <video id="bg-video-2" class="bg-video hidden" autoplay muted loop playsinline></video>
 
-    <!-- About Button -->
-    <a id="about-button" class="about-button hidden">About</a>
+  <!-- Vignette -->
+  <div class="vignette"></div>
 
-    <!-- About Overlay -->
-    <div id="about-overlay" class="about-overlay hidden">
-        <div class="about-content">
-            <button id="close-about" class="close-button">&times;</button>
-            <p>Hello :) Mein Name ist Cedric und ich studiere Politikwissenschaft und Digitale Medien. Auf diesem Kanal setze ich mich kritisch mit verschiedenen politischen und gesellschaftlichen Themen auseinander. Ich freue mich, wenn dir meine Videos gefallen!</p>
-        </div>
-    </div>
-    
-    <div id="blur-background" class="blur-background hidden"></div>
+  <header class="hero">
+    <img src="logo.png" alt="Controversum Logo" class="logo" />
+    <h1 class="glitch-text">
+      <span class="contro">Contro</span><span class="versum">versum</span>
+    </h1>
+    <p class="typewriter">YouTube-Videos, die tiefer gehen.</p> <!-- Der Text bleibt gleich -->
+    <a href="#video" class="cta-button hidden">Neues Video ansehen</a>
+  </header>
 
-    <!-- Typing Text -->
-    <p class="typewriter secondary-typewriter">Zum neuesten Video:</p>
+  <main class="content">
+    <section id="video" class="video-section">
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/aerDcrTKFf4" 
+          title="Neuestes Video" 
+          frameborder="0" 
+          allowfullscreen
+        ></iframe>
+      </div>
+      <a class="channel-button" href="https://www.youtube.com/@Controversum." target="_blank">Zum YouTube-Kanal</a>
+    </section>
+  </main>
 
-    <!-- YouTube Video Embed -->
-    <div class="youtube-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-    </div>
+  <footer>
+    <p>© 2025 Cedric Janssen. Made with 🤍</p>
+  </footer>
 
-    <script>
-        // JS-Funktionalität für About-Button und Overlay
-        const aboutBtn = document.getElementById("about-button");
-        const aboutOverlay = document.getElementById("about-overlay");
-        const closeAbout = document.getElementById("close-about");
-        const blurBg = document.getElementById("blur-background");
+  <!-- Inline JavaScript -->
+  <script>
+    const video1 = document.getElementById("bg-video-1");
+    const video2 = document.getElementById("bg-video-2");
+    const cta = document.querySelector(".cta-button");
 
-        aboutBtn.addEventListener("click", () => {
-            aboutOverlay.classList.remove("hidden");
-            blurBg.classList.remove("hidden");
-            setTimeout(() => {
-                aboutOverlay.classList.add("show");
-            }, 10);
-        });
+    // Setze Videopfade
+    video1.src = "intro.mp4";      // erstes, einmaliges Hintergrundvideo
+    video2.src = "loop.mp4";       // danach dauerhafte Schleife
 
-        closeAbout.addEventListener("click", () => {
-            aboutOverlay.classList.remove("show");
-            setTimeout(() => {
-                aboutOverlay.classList.add("hidden");
-                blurBg.classList.add("hidden");
-            }, 500);
-        });
-    </script>
+    // Wenn das erste Video endet, blende es aus und starte das Loop-Video
+    video1.addEventListener("ended", () => {
+      video1.classList.add("hidden");
+      video2.classList.remove("hidden");
+      video2.play();
+    });
 
+    // Zeige CTA-Button nach kurzer Verzögerung (entsprechend Typewriter-Ende)
+    setTimeout(() => {
+      cta.classList.remove("hidden");
+    }, 3700); // ca. 3.7s nach Seitenstart
+  </script>
 </body>
 </html>
