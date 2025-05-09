@@ -1,0 +1,226 @@
+margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto, sans-serif;
+  color: #fff;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.bg-video {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.hidden {
+  display: none;
+}
+
+.vignette {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease forwards;
+}
+
+.glitch-text {
+  font-size: 3rem;
+  font-weight: 600;
+  animation: glitch 0.6s linear forwards;
+}
+
+.contro {
+  color: #77ff77;
+}
+
+.versum {
+  color: #fff;
+}
+
+@keyframes glitch {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.typewriter {
+  font-size: 1.25rem;
+  color: #ccc;
+  overflow: hidden;
+  border-right: .15em solid #ccc;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 3s steps(30, end) forwards, blink 0.7s steps(30, end) 3s forwards;
+  animation-delay: 0.7s;
+  margin: 1rem auto 0 auto;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0% { border-right-color: #ccc; }
+  99% { border-right-color: transparent; }
+  100% { border-right-color: transparent; }
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 3.5s;
+}
+
+.cta-button:hover {
+  background-color: #ddd;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.content {
+  padding: 2rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.video-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1.5rem;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.channel-button {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  border: 1px solid #fff;
+  border-radius: 9999px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.channel-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.875rem;
+  color: #aaa;
+  position: relative;
+  z-index: 1;
+}
+
+.about-link {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  font-size: 1.25rem; /* Schriftgröße etwas größer */
+  letter-spacing: 0.5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; /* gleiche Font wie body */
+  transition: color 0.3s ease;
+  z-index: 10;
+}
+
+.about-link:hover {
+  color: #ffffff;
+}
+
+.about-container {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.about-container h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.about-text span {
+  opacity: 0;
+  display: inline-block;
+  animation: fadeInWord 0.5s ease forwards;
+}
+
+@keyframes fadeInWord {
+  to {
+    opacity: 1;
+  }
+}
+
+.about-link,
+.glitch-text,
+.typewriter,
+.cta-button,
+.channel-button,
+footer,
+.about-container h1,
+.about-text {
+  font-family: inherit;
+}

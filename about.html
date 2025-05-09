@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – Controversum</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Hintergrundvideo -->
+  <video id="bg-video-1" class="bg-video" autoplay muted playsinline></video>
+  <video id="bg-video-2" class="bg-video hidden" autoplay muted loop playsinline></video>
+
+  <!-- Vignette -->
+  <div class="vignette"></div>
+
+  <!-- About-Button zurück zur Startseite -->
+  <a href="index.html" class="about-link">← Zurück</a>
+
+  <main class="about-container">
+    <h1>About</h1>
+    <p class="about-text">
+      <!-- Wörter einzeln einspannen -->
+      <span style="animation-delay: 0s;">Hello</span>
+      <span style="animation-delay: 0.3s;">:)</span>
+      <span style="animation-delay: 0.6s;">Mein</span>
+      <span style="animation-delay: 0.9s;">Name</span>
+      <span style="animation-delay: 1.2s;">ist</span>
+      <span style="animation-delay: 1.5s;">Cedric</span>
+      <span style="animation-delay: 1.8s;">und</span>
+      <span style="animation-delay: 2.1s;">ich</span>
+      <span style="animation-delay: 2.4s;">studiere</span>
+      <span style="animation-delay: 2.7s;">Politikwissenschaft</span>
+      <span style="animation-delay: 3s;">und</span>
+      <span style="animation-delay: 3.3s;">Digitale</span>
+      <span style="animation-delay: 3.6s;">Medien.</span>
+      <br><br>
+      <span style="animation-delay: 3.9s;">Auf</span>
+      <span style="animation-delay: 4.2s;">diesem</span>
+      <span style="animation-delay: 4.5s;">Kanal</span>
+      <span style="animation-delay: 4.8s;">setze</span>
+      <span style="animation-delay: 5.1s;">ich</span>
+      <span style="animation-delay: 5.4s;">mich</span>
+      <span style="animation-delay: 5.7s;">kritisch</span>
+      <span style="animation-delay: 6s;">mit</span>
+      <span style="animation-delay: 6.3s;">verschiedenen</span>
+      <span style="animation-delay: 6.6s;">politischen</span>
+      <span style="animation-delay: 6.9s;">und</span>
+      <span style="animation-delay: 7.2s;">gesellschaftlichen</span>
+      <span style="animation-delay: 7.5s;">Themen</span>
+      <span style="animation-delay: 7.8s;">auseinander.</span>
+      <br><br>
+      <span style="animation-delay: 8.1s;">Ich</span>
+      <span style="animation-delay: 8.4s;">freue</span>
+      <span style="animation-delay: 8.7s;">mich,</span>
+      <span style="animation-delay: 9s;">wenn</span>
+      <span style="animation-delay: 9.3s;">dir</span>
+      <span style="animation-delay: 9.6s;">meine</span>
+      <span style="animation-delay: 9.9s;">Videos</span>
+      <span style="animation-delay: 10.2s;">gefallen!</span>
+    </p>
+  </main>
+
+  <script>
+    const video1 = document.getElementById("bg-video-1");
+    const video2 = document.getElementById("bg-video-2");
+
+    video1.src = "intro.mp4";
+    video2.src = "loop.mp4";
+
+    video1.addEventListener("ended", () => {
+      video1.classList.add("hidden");
+      video2.classList.remove("hidden");
+      video2.play();
+    });
+  </script>
+</body>
+</html>
