@@ -205,17 +205,6 @@ footer {
 }
 
 
-.about-link,
-.glitch-text,
-.typewriter,
-.cta-button,
-.channel-button,
-footer,
-.about-container h1,
-.about-text {
-  font-family: inherit;
-}
-
 .about-link {
   position: absolute;
   top: 1.5rem;
