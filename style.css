@@ -269,3 +269,66 @@ footer,
     opacity: 1;
   }
 }
+
+/* Bereits vorhandener Hintergrund der Mainpage */
+.background {
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  color: #111;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container für die News-Subpage */
+.news-container {
+  max-width: 800px;
+  margin: 2em auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Header-Bild */
+.news-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Titel */
+.news-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+/* Lead-Text */
+.news-lead {
+  font-size: 1.1em;
+  margin: 0.5em 0;
+}
+
+/* Datum */
+.news-date {
+  font-size: 0.9em;
+  color: gray;
+  margin-bottom: 1.5em;
+}
+
+/* Haupttext */
+.news-body p {
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
+
+/* Zwischenüberschriften */
+.section-heading {
+  font-weight: 700;
+  font-size: 1.2em;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.3em;
+}
