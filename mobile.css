@@ -1,7 +1,8 @@
-/* mobile.css – nur für Smartphones */
+/* mobile.css – für Smartphones optimiert */
 
+/* Hintergrundvideo etwas sichtbarer */
 .bg-video {
-  filter: brightness(1.2) contrast(1.2) saturate(1.1);
+  filter: brightness(1.2) contrast(1.1) saturate(1.05);
   object-fit: cover;
   position: fixed;
   top: 0;
@@ -11,12 +12,14 @@
   z-index: -1;
 }
 
-.vignette {
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
+/* Weißer Inhaltsblock (About-Text) bekommt mehr Abstand zum Rand */
+.about-container {
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+/* Optional: bessere Lesbarkeit auf kleinen Displays */
+.about-text {
+  font-size: 1rem;
+  line-height: 1.6;
 }
