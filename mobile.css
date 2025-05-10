@@ -1,0 +1,22 @@
+/* mobile.css – nur für Smartphones */
+
+.bg-video {
+  filter: brightness(1.2) contrast(1.2) saturate(1.1);
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+.vignette {
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
