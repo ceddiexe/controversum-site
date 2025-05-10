@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="background">
+  <!-- Hintergrundvideo -->
+<video id="bg-video-1" class="bg-video" autoplay muted playsinline></video>
+<video id="bg-video-2" class="bg-video hidden" autoplay muted loop playsinline></video>
+
+<!-- Vignette für dunkleren Look -->
+<div class="vignette"></div>
 
   <div class="news-container">
     <img src="head.jpg" alt="News Header" class="news-image" />
@@ -30,6 +36,20 @@
       <p>Noch unklar ist der Effekt der Einstufung auf die bundesweiten Umfragewerte der AfD. Bei der Bundestagswahl am 23. Februar holte sie nach deutlichen Zugewinnen noch 20,8 % der Stimmen...</p>
     </div>
   </div>
+<script>
+  const video1 = document.getElementById("bg-video-1");
+  const video2 = document.getElementById("bg-video-2");
 
+  // Setze Videopfade
+  video1.src = "intro.mp4";
+  video2.src = "loop.mp4";
+
+  // Wechsel zu Loop nach Intro
+  video1.addEventListener("ended", () => {
+    video1.classList.add("hidden");
+    video2.classList.remove("hidden");
+    video2.play();
+  });
+</script>
 </body>
 </html>
